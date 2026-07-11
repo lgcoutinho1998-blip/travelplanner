@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="A private, offline-friendly travel checklist.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css?v=5">
+  <style>.destination-preview{display:flex;gap:14px;align-items:center;margin:-4px 0 18px;padding:10px;background:#fff0cc;border:2px solid #f3bd42;border-radius:16px}.destination-preview[hidden]{display:none}.destination-preview img{width:112px;height:78px;object-fit:cover;border-radius:11px}.destination-preview div{display:grid;gap:3px}.destination-preview .eyebrow{margin:0}.destination-preview small{color:#6e7771}.hero{background:linear-gradient(120deg,#ffcf5744,#ef715e29,#46a7d329);border-radius:0 0 48px 48px}.trip-card:nth-child(3n+1){background:#fff8df}.trip-card:nth-child(3n+2){background:#eef8f5}.trip-card:nth-child(3n){background:#fff0ee}</style>
+  <title>TravelPlanner</title>
+  <style>.trip-photo{width:calc(100% + 44px);height:165px;object-fit:cover;margin:-22px -22px 12px;border-radius:21px 21px 0 0}.itinerary-photo{margin:-20px -28px 24px;position:relative}.itinerary-photo img{display:block;width:100%;height:230px;object-fit:cover}.itinerary-photo figcaption{position:absolute;right:10px;bottom:9px;background:#173b34cc;color:white;padding:5px 8px;border-radius:8px;font-size:10px}.itinerary-photo a{color:white}.destination-preview img{background:#d6e9e3}@media(max-width:600px){.itinerary-photo img{height:180px}}</style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="TravelPlanner home"><span class="brand-mark">T</span><span>TravelPlanner</span></a>
+    <button class="icon-button" id="settingsButton" aria-label="Open data tools">•••</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">YOUR TRIPS</p>
+      <h1>Make the days.<br><em>Make them count.</em></h1>
+      <p class="intro">Turn your travel dates into a day-by-day list of places, meals, bookings, and moments.</p>
+      <button class="primary" id="newTripButton">＋ New trip</button>
+    </section>
+
+    <section class="trip-section" aria-labelledby="tripsHeading">
+      <div class="section-heading">
+        <div><p class="eyebrow">ITINERARIES</p><h2 id="tripsHeading">Upcoming adventures</h2></div>
+        <span class="trip-count" id="tripCount"></span>
+      </div>
+      <div class="trip-grid" id="tripGrid"></div>
+      <div class="empty-state" id="emptyState" hidden>
+        <span>✦</span><h3>Your next adventure starts here</h3>
+        <p>Create a trip and we’ll give you a useful starter checklist.</p>
+        <button class="secondary" id="emptyNewTrip">Create my first trip</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="tripDialog">
+    <form method="dialog" id="tripForm">
+      <div class="dialog-head"><div><p class="eyebrow">NEW ITINERARY</p><h2>Where are you going?</h2></div><button class="close" value="cancel" aria-label="Close">×</button></div>
+      <label>Destination<input id="tripName" required maxlength="50" placeholder="Rome"></label>
+      <div class="destination-preview" id="destinationPreview" hidden><img alt="Destination photograph"><div><p class="eyebrow">PHOTO FOUND</p><strong></strong><small>Photo from Wikimedia Commons</small></div></div>
+      <div class="field-row"><label>From<input id="tripStart" type="date" required></label><label>Until<input id="tripEnd" type="date" required></label></div>
+      <button class="primary full" value="default">Create daily itinerary</button>
+    </form>
+  </dialog>
+
+  <dialog id="checklistDialog" class="checklist-dialog">
+    <div id="checklistView"></div>
+  </dialog>
+
+  <dialog id="toolsDialog">
+    <form method="dialog">
+      <div class="dialog-head"><div><p class="eyebrow">LOCAL & PRIVATE</p><h2>Data tools</h2></div><button class="close" value="cancel" aria-label="Close">×</button></div>
+      <p class="muted">Your lists live only in this browser. Export a backup before changing phones or clearing browser data.</p>
+      <div class="tool-buttons"><button type="button" class="secondary" id="exportButton">Export backup</button><label class="secondary file-label">Import backup<input type="file" id="importInput" accept="application/json"></label></div>
+      <button type="button" class="danger" id="clearButton">Delete all local data</button>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js?v=5"></script>
+  <script src="photos.js?v=5"></script>
+  <script src="connections.js?v=6"></script>
+  <style>html,body{background:#fff;color:#172033;font-family:Inter,Segoe UI,Arial,sans-serif}.topbar{background:#fff;border-color:#e4e8ef}.hero{background:#fff;border-bottom:1px solid #e8ebf0;border-radius:0}.hero h1,.section-heading h2,.trip-card h3,.dialog-head h2{font-family:Inter,Segoe UI,Arial,sans-serif;letter-spacing:-.045em}.hero h1 em{font-style:normal;color:#2563eb}.brand-mark,.primary{background:#2563eb}.eyebrow{color:#e34f75}.trip-section{padding-top:44px}.trip-card{background:#fff!important;border-color:#e2e7ef;box-shadow:0 12px 35px #263b5b16}.trip-card:before{background:#2563eb}.checklist-top{background:#172033}.connection{display:grid;grid-template-columns:auto 1fr;gap:12px;margin:18px 0;padding:15px;border:1px solid #dbe5f3;border-radius:16px;background:#f5f8ff}.connection-icon{font-size:25px}.connection strong,.connection small{display:block}.connection small{color:#687386;margin-top:4px}.connect-button{width:100%;margin:18px 0;background:#e9f0ff;color:#174ea6;border:1px dashed #8eb1eb}</style>
+</body>
+</html>
