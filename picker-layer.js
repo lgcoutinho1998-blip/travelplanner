@@ -1,0 +1,1 @@
+document.addEventListener('pointerdown',event=>{const input=event.target.closest('input[data-picker]');if(!input)return;queueMicrotask(()=>{const picker=document.querySelector('.tp-picker'),dialog=input.closest('dialog');if(picker&&dialog){dialog.append(picker);picker.hidden=false}})});
